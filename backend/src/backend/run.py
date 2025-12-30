@@ -9,8 +9,9 @@ from backend.blueprints.sessions import blueprint as sessions_blueprint
 
 app = Quart(__name__)
 app.config.from_prefixed_env(prefix='TOZO')
+# directly: app.secret_key = 'secret key' # https://github.com/pgjones/quart-auth
 
-auth_manager = QuartAuth(app)
+auth_manager = QuartAuth(app) # previously AuthManager
 quart_db = QuartDB(app)
 
 app.register_blueprint(control_blueprint)

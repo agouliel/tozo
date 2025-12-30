@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from quart import Blueprint, ResponseReturnValue, g, request
+from quart import Blueprint, ResponseReturnValue, g, request, render_template_string
 from quart_auth import AuthUser, current_user, login_required, login_user, logout_user
 from backend.models.member import select_member_by_email
 
@@ -22,7 +22,7 @@ class MyData:
 @blueprint.post("/sessions/")
 #async def login(data: LoginData) -> ResponseReturnValue:
 async def login() -> ResponseReturnValue:
-    mydict = await request.json
+    mydict = await request.json # # https://mojoauth.com/parse-and-generate-formats/parse-and-generate-json-with-quart/
     data = MyData(mydict) # https://stackoverflow.com/questions/59250557/how-to-convert-a-python-dict-to-a-class-object
 
     member = await select_member_by_email(g.connection, data.email)
@@ -60,3 +60,10 @@ async def status():
     assert current_user.auth_id is not None  # nosec
     #return Status(member_id=int(current_user.auth_id))
     return {'member_id': str(current_user.auth_id)}
+
+
+# https://github.com/pgjones/quart-auth
+@blueprint.route("/status/")
+async def login_status():
+  print(current_user) # AuthUser(auth_id=None, action=Action.PASS)
+  return await render_template_string("{{ current_user.is_authenticated }}")
