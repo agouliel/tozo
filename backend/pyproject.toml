@@ -27,5 +27,5 @@ asyncio_mode = "auto"
 pythonpath = ["src"]
 
 [tool.pdm.scripts]
-test = "pytest tests/"
-start = "quart --app src/backend/run.py run --port 5050"
+test = {cmd = "pytest tests/", env_file = "testing.env"}
+start = {cmd = "quart --app src/backend/run.py run --port 5050", env_file = "development.env"}
