@@ -5,6 +5,7 @@ from quart import Quart
 from quart_auth import QuartAuth
 from quart_db import QuartDB
 from backend.blueprints.control import blueprint as control_blueprint
+from backend.blueprints.sessions import blueprint as sessions_blueprint
 
 app = Quart(__name__)
 app.config.from_prefixed_env(prefix='TOZO')
@@ -13,6 +14,8 @@ auth_manager = QuartAuth(app)
 quart_db = QuartDB(app)
 
 app.register_blueprint(control_blueprint)
+app.register_blueprint(sessions_blueprint)
+
 
 @app.cli.command("recreate_db")
 def recreate_db() -> None:
