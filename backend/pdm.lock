@@ -5,7 +5,7 @@
 groups = ["default", "dev"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:1cb340870a6dcdad9df0881bc85d4e09b185041ab780433bf186f397ff6e47af"
+content_hash = "sha256:57af1e5cf9fd2264faf66b941967b1426b65fbb979cbcb7b60fa9052a36249fc"
 
 [[metadata.targets]]
 requires_python = "==3.14.*"
@@ -387,6 +387,21 @@ dependencies = [
 files = [
     {file = "quart-0.20.0-py3-none-any.whl", hash = "sha256:003c08f551746710acb757de49d9b768986fd431517d0eb127380b656b98b8f1"},
     {file = "quart-0.20.0.tar.gz", hash = "sha256:08793c206ff832483586f5ae47018c7e40bdd75d886fee3fabbdaa70c2cf505d"},
+]
+
+[[package]]
+name = "quart-auth"
+version = "0.11.0"
+requires_python = ">=3.9"
+summary = "A Quart extension to provide secure cookie authentication"
+groups = ["default"]
+dependencies = [
+    "quart>=0.18",
+    "typing-extensions; python_version < \"3.10\"",
+]
+files = [
+    {file = "quart_auth-0.11.0-py3-none-any.whl", hash = "sha256:dd342ea39475a9b32b79d83e2b6820ddaa358e77f01dedbba47d50529f2c8c74"},
+    {file = "quart_auth-0.11.0.tar.gz", hash = "sha256:7703df693d795b3ec43a634efe4118c6adbddd98e7b8195008ca6def6d45cb47"},
 ]
 
 [[package]]
