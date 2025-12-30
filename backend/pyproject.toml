@@ -5,7 +5,7 @@ description = "Default template for PDM package"
 authors = [
     {name = "agouliel", email = "agouliel@gmail.com"},
 ]
-dependencies = ["quart>=0.20.0", "quart-auth>=0.11.0"]
+dependencies = ["quart>=0.20.0", "quart-auth>=0.11.0", "quart-db>=0.11.0"]
 requires-python = "==3.14.*"
 readme = "README.md"
 license = {text = "MIT"}
@@ -27,5 +27,7 @@ asyncio_mode = "auto"
 pythonpath = ["src"]
 
 [tool.pdm.scripts]
-test = {cmd = "pytest tests/", env_file = "testing.env"}
+recreate-db-base = "quart --app src/backend/run.py recreate_db"
+recreate-db = {composite = ["recreate-db-base"], env_file = "development.env"}
+test = {composite = ["recreate-db-base", "pytest tests/"], env_file = "testing.env"}
 start = {cmd = "quart --app src/backend/run.py run --port 5050", env_file = "development.env"}
